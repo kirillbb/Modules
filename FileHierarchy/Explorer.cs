@@ -88,13 +88,16 @@ namespace FileHierarchy
             }
         }
 
-        private static void OpenReadFile(string currentPath)
+        private static void OpenReadFile(string path)
         {
-            string text = File.ReadLines(currentPath).ToString();
-            if (text.Length > 500)
+            string text;
+
+            using (StreamReader reader = new StreamReader(path))
             {
-                text.Substring(0, 500);
+                text = reader.ReadToEnd();
+                text = text.Substring(0, 500);
             }
+
             Console.WriteLine("\n" + text + "\n");
         }
     }
