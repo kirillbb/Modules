@@ -114,14 +114,15 @@ namespace FileHierarchy
         private static string DecodeBinaryCode(string path)
         {
             string text = "";
+            byte[] byteArray; ////open "C:\Programs\7-Zip\7z.dll"
 
-            using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open)))
+            using (FileStream fs = new FileStream(path, FileMode.Open))
             {
-                text = reader.ReadString();
+                fs.Read(byteArray = new byte[4096]);
             }
-            byte[] byteArray = Encoding.ASCII.GetBytes(text); ////open "C:\Programs\7-Zip\7z.dll"
-            text = Encoding.ASCII.GetString(byteArray);
 
+            text = Encoding.ASCII.GetString(byteArray);
+            text = text.Substring(0, 500);
             return text;
         }
     }
