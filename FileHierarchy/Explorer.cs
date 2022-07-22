@@ -12,7 +12,7 @@ namespace FileHierarchy
         public static void FindFiles(string path)
         {
             string[] files = Directory.GetFiles(path);
-            
+
             PrintItems(files, path);
         }
 
@@ -41,23 +41,21 @@ namespace FileHierarchy
             return File.Exists(path);
         }
 
-        public static void Controller()
+        public static void Controller(string command)
         {
-            Console.WriteLine("Enter a command:");
-            string command = Console.ReadLine();
-
             string[] control = command.Split(' ');
 
             if (currentPath != "")
                 currentPath += "\\";
 
+            
+
             try
             {
-                currentPath += control[1].Replace("\"", "");
-
                 switch (control[0])
                 {
                     case "open":
+                        currentPath += control[1].Replace("\"", "");
 
                         Console.WriteLine();
                         if (IsDirectory(currentPath))
@@ -72,8 +70,11 @@ namespace FileHierarchy
                             break;
                         }
 
+                        Logger.AddLogToLogList(control[0], control[1]);
+
                         break;
                     case "sort":
+                        currentPath += control[1].Replace("\"", "");
                         //
                         //
                         break;
@@ -98,7 +99,30 @@ namespace FileHierarchy
                 text = text.Substring(0, 500);
             }
 
+            if (HasBinaryContent(text))
+            {
+                text = DecodeBinaryCode(path);
+            }
+
             Console.WriteLine("\n" + text + "\n");
+        }
+        private static bool HasBinaryContent(string content)
+        {
+            return content.Any(ch => char.IsControl(ch) && ch != '\r' && ch != '\n' && ch != '\t');
+        }
+
+        private static string DecodeBinaryCode(string path)
+        {
+            string text = "";
+
+            using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open)))
+            {
+                text = reader.ReadString();
+            }
+            byte[] byteArray = Encoding.ASCII.GetBytes(text); ////open "C:\Programs\7-Zip\7z.dll"
+            text = Encoding.ASCII.GetString(byteArray);
+
+            return text;
         }
     }
 }
