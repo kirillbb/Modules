@@ -32,12 +32,6 @@ namespace FileHierarchy
         }
         public static void SaveLogsToFile()
         {
-            //string json = JsonConvert.SerializeObject(LogList.ToArray());
-            //using (StreamWriter writer = new(@"logs.json", true))
-            //{
-            //    writer.WriteLine(json);
-            //}
-
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(Log[]));
@@ -47,6 +41,8 @@ namespace FileHierarchy
                     logArr = LogList.ToArray();
                     xmlSerializer.Serialize(fs, logArr);
                 }
+                //все равно при повторном сохранении ведёт себя не так, как надо (пропускает по пол слова в обявлении "поля" пример:(... </LogArray>ime>....</Time> ....))
+                //не перезаписывает файл
             }
             catch (Exception ex)
             {

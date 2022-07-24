@@ -12,7 +12,7 @@
             do
             {
                 Console.WriteLine("________________________________________________________________________________________");
-                Console.WriteLine("\nEnter a command: (*Enter \"close\" to exit)");
+                Console.WriteLine("\nEnter a command: (example: <<open \"c:\\\\programs\">>  *Enter \"close\" to exit)");
                 Console.WriteLine(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
                 command = Console.ReadLine();
 
