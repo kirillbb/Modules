@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Xml.Serialization;
 
 namespace FileHierarchy
 {
-    internal class Logger
+    public class Logger
     {
         private static Logger instance = new();
         private static readonly List<Log> LogList = new();
@@ -25,24 +21,37 @@ namespace FileHierarchy
 
         public static void AddLogToLogList(string command, string path)
         {
-            string now = DateTime.Now.ToLongTimeString();
+            DateTime time = DateTime.Now;
 
             LogList.Add(new Log
             {
-                Time = now,
+                Time = time,
                 Command = command,
                 Path = path
             });
         }
         public static void SaveLogsToFile()
         {
-            StringBuilder logString = new(string.Empty);
-            for (int i = 0; i < LogList.Count; i++)
-            {
-                logString.AppendLine(LogList[i].ToString());
-            }
+            //string json = JsonConvert.SerializeObject(LogList.ToArray());
+            //using (StreamWriter writer = new(@"logs.json", true))
+            //{
+            //    writer.WriteLine(json);
+            //}
 
-            File.WriteAllText("log.txt", logString.ToString());
+            try
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Log[]));
+                using (FileStream fs = new FileStream("logs.xml", FileMode.OpenOrCreate))
+                {
+                    Log[] logArr = new Log[LogList.Count];
+                    logArr = LogList.ToArray();
+                    xmlSerializer.Serialize(fs, logArr);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }

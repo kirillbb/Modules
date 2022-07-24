@@ -4,22 +4,25 @@
     {
         private static void Main()
         {
+            Console.WriteLine("________________________________________________________________________________________");
             Console.WriteLine("C:\\...");
             Console.WriteLine("D:\\...");
             string command;
+
             do
             {
-                Console.WriteLine("Enter a command: (0 to exit)");
+                Console.WriteLine("________________________________________________________________________________________");
+                Console.WriteLine("\nEnter a command: (*Enter \"close\" to exit)");
+                Console.WriteLine(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
                 command = Console.ReadLine();
-                if (command == "0")
+
+                if (command == "close")
                     break;
 
                 Explorer.Controller(command);
             } while (true);
 
             Logger.SaveLogsToFile();
-
-            Console.WriteLine();
         }
     }
 }
