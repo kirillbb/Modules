@@ -35,14 +35,14 @@ namespace FileHierarchy
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(Log[]));
+                File.Delete("logs.xml");
+
                 using (FileStream fs = new FileStream("logs.xml", FileMode.OpenOrCreate))
                 {
                     Log[] logArr = new Log[LogList.Count];
                     logArr = LogList.ToArray();
                     xmlSerializer.Serialize(fs, logArr);
                 }
-                //все равно при повторном сохранении ведёт себя не так, как надо (пропускает по пол слова в обявлении "поля" пример:(... </LogArray>ime>....</Time> ....))
-                //не перезаписывает файл
             }
             catch (Exception ex)
             {
