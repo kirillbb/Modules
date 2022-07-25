@@ -19,7 +19,7 @@
                 if (command == "close")
                     break;
 
-                Explorer.Controller(command);
+                Controller.Control(command);
             } while (true);
 
             Logger.SaveLogsToFile();
