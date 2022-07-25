@@ -1,101 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace FileHierarchy
 {
-    public static class Explorer
+    public class Explorer
     {
-        static string currentPath = "";
-        public static void FindFiles(string path)
+        public List<FileInfo> FindFiles(string path)
         {
-            string[] files = Directory.GetFiles(path);
-            
-            PrintItems(files, path);
+            var defaultSortedFiles = new DirectoryInfo(path).GetFiles()
+                                                              .ToList();
+
+            return defaultSortedFiles;
         }
 
-        public static void FindDirectories(string path)
+        public List<DirectoryInfo> FindDirectories(string path)
         {
-            string[] directories = Directory.GetDirectories(path);
+            var defaultSortedDirectories = new DirectoryInfo(path).GetDirectories()
+                                                                    .ToList();
 
-            PrintItems(directories, path);
+            return defaultSortedDirectories;
         }
 
-        public static void PrintItems(string[] items, string path)
+        public bool IsDirectory(string path) => Directory.Exists(path);
+
+        public bool IsFile(string path) => File.Exists(path);
+
+        private bool HasBinaryContent(string content) => content.Any(ch => char.IsControl(ch) && ch != '\r' && ch != '\n' && ch != '\t');
+
+        public string OpenReadFile(string path)
         {
-            foreach (string item in items)
+            string text; // for check //open "C:\Programs\7-Zip\readme.txt"
+
+            using (StreamReader reader = new StreamReader(path))
             {
-                Console.WriteLine(item);
+                text = reader.ReadToEnd();
             }
-        }
 
-        public static bool IsDirectory(string path)
-        {
-            return Directory.Exists(path);
-        }
+            text = text.Substring(0, 500);
 
-        public static bool IsFile(string path)
-        {
-            return File.Exists(path);
-        }
-
-        public static void Controller()
-        {
-            Console.WriteLine("Enter a command:");
-            string command = Console.ReadLine();
-
-            string[] control = command.Split(' ');
-
-            if (currentPath != "")
-                currentPath += "\\";
-
-            try
+            if (HasBinaryContent(text))
             {
-                currentPath += control[1].Replace("\"", "");
-
-                switch (control[0])
-                {
-                    case "open":
-
-                        Console.WriteLine();
-                        if (IsDirectory(currentPath))
-                        {
-                            FindDirectories(currentPath);
-                            FindFiles(currentPath);
-                            break;
-                        }
-                        else if (IsFile(currentPath))
-                        {
-                            OpenReadFile(currentPath);
-                            break;
-                        }
-
-                        break;
-                    case "sort":
-                        //
-                        //
-                        break;
-                    default:
-                        Console.WriteLine("Unknown command \"{0}\" !", command);
-                        break;
-                }
+                text = DecodeBinaryCode(path);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("\nError! Incorrect command! Try again:\n");
-            }
+
+            return text;
         }
-
-        private static void OpenReadFile(string currentPath)
+        
+        private string DecodeBinaryCode(string path)
         {
-            string text = File.ReadLines(currentPath).ToString();
-            if (text.Length > 500)
+            string text = ""; // for check //open "C:\Programs\7-Zip\7z.dll"
+            byte[] byteArray;
+
+            using (FileStream fs = new FileStream(path, FileMode.Open))
             {
-                text.Substring(0, 500);
+                fs.Read(byteArray = new byte[4096]);
             }
-            Console.WriteLine("\n" + text + "\n");
+
+            text = Encoding.ASCII.GetString(byteArray);
+            text = text.Substring(0, 500);
+            return text;
         }
     }
 }
