@@ -7,7 +7,7 @@ namespace FileHierarchy
         static string currentPath = "";
         public static void Controller(string command)
         {
-            string[] control = command.Split(' ');
+            string[] control = command.Split(' ', 2);
 
             if (currentPath != "")
                 currentPath += "\\";
@@ -69,8 +69,9 @@ namespace FileHierarchy
         private static void FindFiles(string path)
         {
             string[] files = Directory.GetFiles(path);
-            //DateTime timeCreation = File.GetCreationTimeUtc(files[0]);
-            //DateTime time = File.GetLastWriteTimeUtc(files[0]);
+            DateTime fileTimeCreation = File.GetCreationTimeUtc(files[0]);
+            DateTime folderTimeCreation = Directory.GetCreationTimeUtc(files[0]);
+            DateTime fileLastWriteTime = File.GetLastWriteTimeUtc(files[0]);
 
             PrintItems(files, path);
         }
