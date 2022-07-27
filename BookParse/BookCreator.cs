@@ -35,7 +35,7 @@ namespace BookParse
                     return null;
                 }
 
-                Book book = new Book(bookInfo[0], bookInfo[1], int.Parse(bookInfo[2]), bookInfo[3], bookInfo[4]);
+                Book book = new Book(bookInfo[0], bookInfo[1], int.Parse(bookInfo[2]), DateOnly.Parse(bookInfo[3]), bookInfo[4]);
 
                 BookValidator validator = new BookValidator();
 
@@ -50,7 +50,7 @@ namespace BookParse
                 }
                 else
                 {
-                    Console.WriteLine("book add");
+                    Console.WriteLine("Book added");
                     return book;
                 }
             }

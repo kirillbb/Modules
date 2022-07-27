@@ -10,14 +10,15 @@ namespace BookParse
                 .NotEmpty()
                 .When(book => book.Author.Replace(" ", "").Length == 0).WithMessage("должно быть заполнено")
                 .MaximumLength(50);
-            RuleFor(book => book.Name)
+            RuleFor(book => book.BookName)
                 .NotEmpty()
-                .When(book => book.Name.Replace(" ", "").Length == 0).WithMessage("должно быть заполнено")
+                .When(book => book.BookName.Replace(" ", "").Length == 0).WithMessage("должно быть заполнено")
                 .MaximumLength(100);
+            RuleFor(book => book.Date)
+                .NotEmpty();
             RuleFor(book => book.BookFormat)
                 .NotEmpty()
                 .When(book => book.BookFormat.Replace(" ", "").Length == 0).WithMessage("должно быть заполнено");
-
         }
     }
 }

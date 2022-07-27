@@ -13,6 +13,10 @@ namespace BookParse
 
             string bookInfo = Console.ReadLine();   //Е. Таненбаум – Сучасні операційні системи, 1365 (12.05.2013).pdf
             var book = bookCreator.Create(bookInfo);
+
+            Serializer serializer = new Serializer();
+            if (book != null)
+                serializer.BookSerialize(book);
         }
 
         
