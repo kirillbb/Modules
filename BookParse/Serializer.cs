@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookParse
 {
@@ -15,10 +10,11 @@ namespace BookParse
             {
                 string json = JsonConvert.SerializeObject(book);
 
-                using (System.IO.StreamWriter writer = new(@"books.json", true))
-                {
-                    writer.WriteLine(json);
-                }
+                CryptoAes aes = new CryptoAes();
+                byte[] crypted = aes.Create(json);
+
+                using var writer = new BinaryWriter(File.OpenWrite(@"books.json"));
+                writer.Write(crypted);
             }
             catch (Exception ex)
             {
