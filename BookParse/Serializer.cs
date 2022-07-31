@@ -14,17 +14,26 @@ namespace BookParse
                 {
                     writer.WriteLine(json);
                 }
-
-                //CryptoAes aes = new CryptoAes();
-                //byte[] crypted = aes.Create(json);
-
-                //using var writer = new BinaryWriter(File.OpenWrite(@"books.json"));
-                //writer.Write(crypted);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+        public List<Book> BookDeserialize(string path)
+        {
+            List<Book> books = new List<Book>();
+
+            //string json = File.ReadAllText(path);
+
+            //books = JsonConvert.DeserializeObject<List<Book>>(json);
+
+            IEnumerable<string>? jsons = File.ReadLines(path);
+            foreach (string s in jsons)
+            {
+                books.Add(JsonConvert.DeserializeObject<Book>(s.ToString()));
+            }
+            return books;
         }
     }
 }
