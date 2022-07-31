@@ -33,8 +33,10 @@ namespace BookParse
                 //List<Book> booksYears = bookView.FindBooksBetweenYears(1969, 1970, bookList);
                 //bookView.ShowBooks(booksYears);
 
-
-
+                Book foundedBook = bookView.FindBookByName("Born", bookList);
+                Console.WriteLine(foundedBook.ToString());
+                foundedBook = bookView.FindBookByName("Bosdfsdfrn", bookList);
+                Console.WriteLine(foundedBook.ToString());
             }
             catch (Exception ex)
             {
