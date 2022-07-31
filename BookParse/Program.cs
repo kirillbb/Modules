@@ -21,16 +21,20 @@ namespace BookParse
             View bookView = new View();
             var bookList = bookView.AddBooksFromFile(@"books.json");
 
-            //bookView.ShowBooks(bookList);
-
-            //var lastPublishedBook = bookView.FindLastPublishedBook(bookList);
-            //Console.WriteLine("Last published book is:");
-            //Console.WriteLine(lastPublishedBook.ToString());
-
             try
             {
-                List<Book> booksYears = bookView.FindBooksBetweenYears(1969, 1970, bookList);
-                bookView.ShowBooks(booksYears);
+                //bookView.ShowBooks(bookList);
+
+                //var lastPublishedBook = bookView.FindLastPublishedBook(bookList);
+                //Console.WriteLine("Last published book is:");
+                //Console.WriteLine(lastPublishedBook.ToString());
+
+
+                //List<Book> booksYears = bookView.FindBooksBetweenYears(1969, 1970, bookList);
+                //bookView.ShowBooks(booksYears);
+
+
+
             }
             catch (Exception ex)
             {
