@@ -7,23 +7,25 @@ namespace BookParse
         static void Main(string[] args)
         {
             string path = @"books.json";
+
             //Console.WriteLine("Enter the information about the book:");
             //Console.WriteLine("Example:  Е. Таненбаум – Сучасні операційні системи, 1365 (12.05.2013).pdf");
 
-            //BookCreator bookCreator = new BookCreator();
-
-            //string bookInfo = Console.ReadLine();   //Е. Таненбаум – Сучасні операційні системи, 1365 (12.05.2013).pdf
-            //var book = bookCreator.Create(bookInfo);
-
-            //Serializer serializer = new Serializer();
-            //if (book != null)
-            //    serializer.BookSerialize(book, path);
-
-            BookManager bookManager = new BookManager();
-            var bookList = bookManager.AddBooksFromFile(path);
-
             try
             {
+                //BookCreator bookCreator = new BookCreator();
+
+                //string bookInfo = Console.ReadLine();   //Е. Таненбаум – Сучасні операційні системи, 1365 (12.05.2013).pdf
+                //var book = bookCreator.Create(bookInfo);
+
+                //Serializer serializer = new Serializer();
+                //if (book != null)
+                //    serializer.BookSerialize(book, path);
+
+                BookManager bookManager = new BookManager();
+                var bookList = bookManager.AddBooksFromFile(path);
+
+
                 //bookManager.ShowBooks(bookList);
 
                 //var lastPublishedBook = bookManager.FindLastPublishedBook(bookList);
@@ -41,7 +43,10 @@ namespace BookParse
 
                 //Console.WriteLine(bookManager.FindAuthors(bookList));
 
+                DateTime date = new DateTime(2000, 5, 20);
 
+                var books = bookManager.GroupBooksByAuthors(date, bookList);
+                Console.WriteLine();
             }
             catch (Exception ex)
             {

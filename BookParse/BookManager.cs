@@ -58,6 +58,28 @@ namespace BookParse
             throw new Exception(message: "Book not found");
         }
 
+        public Dictionary<string, IOrderedEnumerable<Book>> GroupBooksByAuthors(DateTime date, List<Book> bookList)
+        {
+            if (bookList.Count == 0)
+                throw new Exception(message: "Books list are empty");
+
+            Dictionary<string, Book[]> bookDictionary = new Dictionary<string, Book[]>();
+
+            var grouped = from book in bookList
+                          where book.Date >= date
+                          group book by book.Author into k
+                          orderby k.Key descending
+                          select new
+                          {
+                              Author = k.Key,
+                              Books = from bk in k
+                                      where bk.Date >= date
+                                      orderby bk.BookName
+                                      select bk
+                          };
+            return grouped.ToDictionary(book => book.Author, x => x.Books);
+        }
+
         public string FindAuthors(List<Book> bookList)
         {
             if (bookList.Count == 0)
