@@ -4,13 +4,13 @@ namespace BookParse
 {
     internal class Serializer
     {
-        public void BookSerialize(Book book)
+        public void BookSerialize(Book book, string path)
         {
             try
             {
                 string json = JsonConvert.SerializeObject(book);
 
-                using (System.IO.StreamWriter writer = new(@"books.json", true))
+                using (System.IO.StreamWriter writer = new(path, true))
                 {
                     writer.WriteLine(json);
                 }
@@ -23,10 +23,6 @@ namespace BookParse
         public List<Book> BookDeserialize(string path)
         {
             List<Book> books = new List<Book>();
-
-            //string json = File.ReadAllText(path);
-
-            //books = JsonConvert.DeserializeObject<List<Book>>(json);
 
             IEnumerable<string>? jsons = File.ReadLines(path);
             foreach (string s in jsons)
