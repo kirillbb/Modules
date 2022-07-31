@@ -10,11 +10,16 @@ namespace BookParse
             {
                 string json = JsonConvert.SerializeObject(book);
 
-                CryptoAes aes = new CryptoAes();
-                byte[] crypted = aes.Create(json);
+                using (System.IO.StreamWriter writer = new(@"books.json", true))
+                {
+                    writer.WriteLine(json);
+                }
 
-                using var writer = new BinaryWriter(File.OpenWrite(@"books.json"));
-                writer.Write(crypted);
+                //CryptoAes aes = new CryptoAes();
+                //byte[] crypted = aes.Create(json);
+
+                //using var writer = new BinaryWriter(File.OpenWrite(@"books.json"));
+                //writer.Write(crypted);
             }
             catch (Exception ex)
             {
