@@ -46,6 +46,18 @@ namespace BookParse
             return foundedBooks; 
         }
 
+        public Book FindBookByName(string name, List<Book> books)
+        {
+            foreach (var book in books)
+            {
+                if (book.BookName.ToLower() == name.ToLower())
+                {
+                    return book;
+                }
+            }
+            throw new Exception(message: "Book not found");
+        }
+
         public void ShowBooks(List<Book> bookList)
         {
             int i = 1;
