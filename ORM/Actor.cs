@@ -13,5 +13,7 @@
         public string Country { get; set; }
 
         public List<Movie> Movies { get; set; } = new();
+
+        public List<ActorComment> Comments { get; set; } = new();
     }
 }
