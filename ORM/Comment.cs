@@ -9,5 +9,7 @@
         public EmotionType Emotion { get; set; }
 
         public int Evaluation { get; set; }
+
+        public Movie Movie { get; set; }
     }
 }

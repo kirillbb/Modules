@@ -11,5 +11,7 @@
         public string Gender { get; set; }
 
         public string Country { get; set; }
+
+        public List<Movie> Movies { get; set; } = new();
     }
 }

@@ -11,8 +11,7 @@ namespace ORM
     {
         public ApplicationContext()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+            // Database.EnsureCreated();
         }
 
         public DbSet<Movie> Movies { get; set; } = null!;
@@ -23,7 +22,7 @@ namespace ORM
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-6KJ2COE;Database=ormdb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-6KJ2COE;Database=testDB;Trusted_Connection=True;");
         }
     }
 }
