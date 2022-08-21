@@ -38,11 +38,18 @@ img.relative-img{
 }
 .top-0{
   z-index: 9;
+
 }
 .top-1{
+  position: sticky;
   top: -225px;
-  right: -110px;
+  right: -90px;
   z-index: 1;
+  
+}
+.smile-box{
+  width: 350px;
+  height: auto;
 }
 .center-me {
   margin-left: auto !important;
