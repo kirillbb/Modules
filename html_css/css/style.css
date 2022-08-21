@@ -3,9 +3,50 @@ h1.pink-green{
   color:#9AE340;
   width: 50%;
 }
+.green{
+  color:#008000;
+}
+.text-center{
+  text-align: center;
+}
+.times-font{
+  font-family: 'Times New Roman', Times, serif;
+}
+.bold-this{
+  font-weight: bold;
+}
+.padding-this{
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.text-justify{
+  text-align: justify;
+}
+img.custom{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 200px;
+  height: auto;
+}
+img.relative-img{
+  padding-top: 50px;
+  position: relative;
+  width: 180px;
+  height: auto;
+}
+.top-0{
+  z-index: 9;
+}
+.top-1{
+  top: -225px;
+  right: -110px;
+  z-index: 1;
+}
 .center-me {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 ul.menu{
   list-style-type: none;
