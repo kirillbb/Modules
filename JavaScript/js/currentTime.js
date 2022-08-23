@@ -5,4 +5,4 @@ function currentTime() {
     var clock = document.getElementById("clock");
     clock.innerHTML = now.toLocaleDateString() + "___" + now.toLocaleTimeString();
   }, 1000);
-};
+}
