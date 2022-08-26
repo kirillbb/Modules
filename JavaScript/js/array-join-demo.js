@@ -4,7 +4,7 @@ function Test(){
   var arr = str.split(sep);
   var arrSeparator = "***";
   var arrStr = combine(arr, arrSeparator);
-  document.getElementById("convertedArr").innerHTML = arrStr;
+  document.getElementById("convertedArr").innerHTML = '[' + arr + ']' + " - " + arrStr;
 }
 function combine(Arr, ArrSeparator){
   return Arr.join(ArrSeparator);
