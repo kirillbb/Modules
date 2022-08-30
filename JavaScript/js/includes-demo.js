@@ -4,7 +4,7 @@ function test(){
   document.getElementById("text").innerHTML = newText;
 }
 function includesdemo(text){
-  if (text.includes('Py')) {
+  if (text.includes('Py') || text == "") {
     return text;
   }
   else{
