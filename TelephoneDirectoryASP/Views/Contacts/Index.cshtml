@@ -1,42 +1,61 @@
 ﻿@model IEnumerable<TelephoneDirectoryASP.Models.Contact>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Telephone Directory";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="text-center">
+    <h1>Welcome</h1>
+</div>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Number)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@if (Model.Count() == 0)
+{
+    <div class="text-center">
+        <h2><b>No data avalaible</b></h2>
+    </div>
 }
-    </tbody>
-</table>
+else
+{
+     <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Number)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td> 
+                    <b>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" style="text-decoration: none;">&#9998;</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" style="text-decoration: none;">&#128465;</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+<p>
+    <div class="text-center">
+        <a asp-action="Create">+ Add contact</a>
+    </div>
+</p>
