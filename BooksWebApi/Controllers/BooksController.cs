@@ -21,6 +21,19 @@ namespace BooksWebApi.Controllers
             return Ok(await context.Books.ToListAsync());
         }
 
+        [HttpGet]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> GetBookAsync([FromRoute] Guid id)
+        {
+            var book = await context.Books.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(book);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddContactAsync(AddBookRequest request)
         {
@@ -32,6 +45,37 @@ namespace BooksWebApi.Controllers
             };
 
             await context.Books.AddAsync(book);
+            await context.SaveChangesAsync();
+            return Ok(book);
+        }
+
+        [HttpPut]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> UpdateContactAsync([FromRoute] Guid id, UpdateBookRequest request)
+        {
+            var book = await context.Books.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            book.Title = request.Title;
+            book.Author = request.Author;
+            await context.SaveChangesAsync();
+            return Ok(book);
+        }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> DeleteBookAsync([FromRoute] Guid id)
+        {
+            var book = await context.Books.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            context.Books.Remove(book);
             await context.SaveChangesAsync();
             return Ok(book);
         }

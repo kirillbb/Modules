@@ -7,8 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<BooksAppContext>(opt =>
-opt.UseInMemoryDatabase("BooksDB"));
+//builder.Services.AddDbContext<BooksAppContext>(options => options.UseInMemoryDatabase("BooksDB"));
+builder.Services.AddDbContext<BooksAppContext>(options => 
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
