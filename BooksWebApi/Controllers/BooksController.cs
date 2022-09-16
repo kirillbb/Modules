@@ -1,6 +1,7 @@
 ﻿using BooksWebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace BooksWebApi.Controllers
 {
@@ -12,7 +13,17 @@ namespace BooksWebApi.Controllers
 
         public BooksController(BooksAppContext context)
         {
+            AddTestDataAsync(context);
+
             this.context = context;
+        }
+
+        private void AddTestDataAsync(BooksAppContext context)
+        {
+            List<Book> books = JsonConvert.DeserializeObject<List<Book>>((System.IO.File.ReadAllText("books.json")));
+             
+            context.Books.AddRange(books);
+            context.SaveChanges();
         }
 
         [HttpGet]
