@@ -14,4 +14,21 @@ export class BooksService {
   getAllBooks() : Observable<Book[]> {
     return this.http.get<Book[]>(this.baseApiUrl + '/api/books')
   }
+
+  addBook(addBookRequest: Book): Observable<Book> {
+    addBookRequest.id = '00000000-0000-0000-0000-000000000000';
+    return this.http.post<Book>(this.baseApiUrl + '/api/books', addBookRequest);
+  }
+
+  getBook(id: string): Observable<Book> {
+    return this.http.get<Book>(this.baseApiUrl + '/api/books/' + id);
+  }
+
+  updateBook(id: string, updateBookRequest: Book): Observable<Book> {
+    return this.http.put<Book>(this.baseApiUrl + '/api/books/' + id, updateBookRequest);
+  }
+
+  deleteBook(id: string): Observable<Book> {
+    return this.http.delete<Book>(this.baseApiUrl + '/api/books/' + id);
+  }
 }

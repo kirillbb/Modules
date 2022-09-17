@@ -22,7 +22,7 @@ export class BooksListComponent implements OnInit {
       error: (response) => {
         console.log(response);
       }
-    })
+    });
   }
 
 }

@@ -6,17 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksListComponent } from './components/books/books-list/books-list.component';
 import { AddBookComponent } from './components/books/add-book/add-book.component';
+import { FormsModule } from '@angular/forms';
+import { EditBookComponent } from './components/books/edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksListComponent,
-    AddBookComponent
+    AddBookComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
