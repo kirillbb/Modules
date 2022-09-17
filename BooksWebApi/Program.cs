@@ -7,9 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<BooksAppContext>(options => options.UseInMemoryDatabase("BooksDB"));
-//builder.Services.AddDbContext<BooksAppContext>(options => 
-//options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+// comment it if need to work with DataBase
+//builder.Services.AddDbContext<BooksAppContext>(options => options.UseInMemoryDatabase("BooksDB"));
+
+// uncomment it if need to work with DataBase
+builder.Services.AddDbContext<BooksAppContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -20,10 +23,11 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage(); // ??
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseAuthorization();
 

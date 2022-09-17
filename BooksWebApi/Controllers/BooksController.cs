@@ -13,7 +13,8 @@ namespace BooksWebApi.Controllers
 
         public BooksController(BooksAppContext context)
         {
-            AddTestDataAsync(context);
+            // remove it if need to work with DataBase
+            //AddTestDataAsync(context);
 
             this.context = context;
         }
