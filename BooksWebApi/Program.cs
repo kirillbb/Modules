@@ -4,17 +4,15 @@ using BooksWebApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 
-// comment it if need to work with DataBase
-//builder.Services.AddDbContext<BooksAppContext>(options => options.UseInMemoryDatabase("BooksDB"));
+//// comment it if need to work with DataBase
+builder.Services.AddDbContext<BooksAppContext>(options => options.UseInMemoryDatabase("BooksDB"));
 
-// uncomment it if need to work with DataBase
-builder.Services.AddDbContext<BooksAppContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+//// uncomment it if need to work with DataBase
+//builder.Services.AddDbContext<BooksAppContext>(options =>
+//options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
