@@ -14,7 +14,10 @@ namespace BooksWebApi.Controllers
         public BooksController(BooksAppContext context)
         {
             // remove it if need to work with DataBase
-            //AddTestDataAsync(context);
+            if(context.Books.Count() == 0)
+            {
+                AddTestDataAsync(context);
+            }
 
             this.context = context;
         }
@@ -28,9 +31,19 @@ namespace BooksWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBooksAsync()
+        public async Task<IActionResult> GetBooksAsync([FromQuery] PaginationParams @params)
         {
-            return Ok(await context.Books.ToListAsync());
+            var books = context.Books;
+
+            var metadata = new PaginationMetadata(books.Count(), @params.Page, @params.PageSize);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+            var items = await books
+                .Skip((@params.Page - 1) * @params.PageSize)
+                .Take(@params.PageSize)
+                .ToListAsync();
+
+            return Ok(books);
         }
 
         [HttpGet]
@@ -47,7 +60,7 @@ namespace BooksWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddContactAsync(AddBookRequest request)
+        public async Task<IActionResult> AddBookAsync(AddBookRequest request)
         {
             var book = new Book()
             {
@@ -63,7 +76,7 @@ namespace BooksWebApi.Controllers
 
         [HttpPut]
         [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateContactAsync([FromRoute] Guid id, UpdateBookRequest request)
+        public async Task<IActionResult> UpdateBookAsync([FromRoute] Guid id, UpdateBookRequest request)
         {
             var book = await context.Books.FindAsync(id);
             if (book == null)

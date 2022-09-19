@@ -1,5 +1,8 @@
 <div class="container my-5">
   <h1 class="mb-3">Books</h1>
+  <div class="mb-3">
+    <input type="text" class="form-control" id="serch" name="search" placeholder="Search by name">
+  </div>
   <table class="table" *ngIf="books && books.length > 0">
     <thead>
       <tr>
@@ -20,5 +23,12 @@
       </tr>
     </tbody>
   </table>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="showItems(1)">1</a></li>
+      <li class="page-item"><a class="page-link" (click)="showItems(2)">2</a></li>
+      <li class="page-item"><a class="page-link" (click)="showItems(3)">3</a></li>
+    </ul>
+  </nav>
   <p *ngIf="!books || books.length <= 0">No books found!</p>
 </div>

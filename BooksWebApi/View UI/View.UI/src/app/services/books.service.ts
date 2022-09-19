@@ -11,8 +11,8 @@ export class BooksService {
   baseApiUrl: string =environment.baseApiUrl;
   constructor(private http: HttpClient) { }
 
-  getAllBooks() : Observable<Book[]> {
-    return this.http.get<Book[]>(this.baseApiUrl + '/api/books')
+  getAllBooks(page: number) : Observable<Book[]> {
+    return this.http.get<Book[]>(this.baseApiUrl + '/api/books' + '?Page=' + page +'&PageSize=30')
   }
 
   addBook(addBookRequest: Book): Observable<Book> {
