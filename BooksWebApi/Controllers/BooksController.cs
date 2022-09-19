@@ -13,7 +13,7 @@ namespace BooksWebApi.Controllers
 
         public BooksController(BooksAppContext context)
         {
-            // remove it if need to work with DataBase
+            //// remove it if need to work with DataBase
             if(context.Books.Count() == 0)
             {
                 AddTestDataAsync(context);
@@ -31,7 +31,7 @@ namespace BooksWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBooksAsync([FromQuery] PaginationParams @params)
+        public async Task<IActionResult> GetBooksAsync([FromQuery] BooksParams @params)
         {
             var books = context.Books;
 
@@ -43,7 +43,7 @@ namespace BooksWebApi.Controllers
                 .Take(@params.PageSize)
                 .ToListAsync();
 
-            return Ok(books);
+            return Ok(items);
         }
 
         [HttpGet]
