@@ -31,16 +31,16 @@ namespace BooksWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBooksAsync([FromQuery] BooksParams @params)
+        public async Task<IActionResult> GetBooksAsync([FromQuery] PageOptions options)
         {
             var books = context.Books;
 
-            var metadata = new PaginationMetadata(books.Count(), @params.Page, @params.PageSize);
+            var metadata = new PaginationMetadata(books.Count(), options.Page, options.PageSize);
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
 
             var items = await books
-                .Skip((@params.Page - 1) * @params.PageSize)
-                .Take(@params.PageSize)
+                .Skip((options.Page - 1) * options.PageSize)
+                .Take(options.PageSize)
                 .ToListAsync();
 
             return Ok(items);
