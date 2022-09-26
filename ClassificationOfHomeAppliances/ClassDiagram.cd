@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Module2HW6.Program" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.Starter" Collapsed="true">
+    <Position X="9.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Starter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.Apartment">
+    <Position X="9.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAgAAQAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Apartment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Module2HW6.AbstractAppliance" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAQEAAAAAAQAAAAAAAIAQAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\AbstractAppliance.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Module2HW6.AbstractFactory" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\AbstractFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.KitchenApplianceFactory" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factory\KitchenApplianceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.LargeApplianceFactory" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factory\LargeApplianceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.SmallApplianceFactory" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factory\SmallApplianceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.KitchenAppliance" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAQAAAAAAAIAQAAAAAAAAAA=</HashCode>
+      <FileName>Appliances\KitchenAppliance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.SmallAppliance" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Appliances\SmallAppliance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.LargeAppliance" Collapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Appliances\LargeAppliance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.Shredders" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Appliances\Shredders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.SmallKitchenAppliance" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Appliances\SmallKitchenAppliance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.LargeKitchenAppliance" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAQAAAAAAAIAQAAAAAAAAAA=</HashCode>
+      <FileName>Appliances\LargeKitchenAppliance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module2HW6.Combined" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Appliances\Combined.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
