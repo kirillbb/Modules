@@ -16,6 +16,8 @@ builder.Services.AddDbContext<BooksAppContext>(options => options.UseInMemoryDat
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.Configure<PageOptions>(builder.Configuration.GetSection("Page"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
